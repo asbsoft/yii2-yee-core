@@ -250,7 +250,10 @@ class Yee extends Component
             throw new InvalidConfigException('Invalid language settings! Default application language should be included into `yeesoft\Yee::$languages` setting.');
         }
         
-        if(!empty(array_diff(array_keys($this->languageRedirects), array_keys($this->languages)))){
+        $languageRedirects = array_keys($this->languageRedirects);
+        $languages = array_keys($this->languages);
+        $ad = array_diff($languageRedirects, $languages);
+        if(!empty($ad)){
             throw new InvalidConfigException('Invalid language redirects settings!');
         }
     }
